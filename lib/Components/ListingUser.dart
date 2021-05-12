@@ -6,7 +6,9 @@ import 'dart:html';
 import "../Models/User.dart";
 import "../Action/API.dart";
 import 'package:flutter/material.dart';
+import 'UserPostDetail.dart';
 import 'package:http/http.dart' as http;
+
 
 class ListingUser extends StatefulWidget{
 
@@ -16,12 +18,8 @@ class ListingUser extends StatefulWidget{
 }
  
 
-
-
-
-
-
 class _ListingUser extends State<ListingUser> {
+
 var users=new List<User> ();
 
 _getUser(){
@@ -36,7 +34,7 @@ _getUser(){
   });
 }
 
- 
+
     @override
     void initState(){
 
@@ -52,18 +50,11 @@ _getUser(){
     }
 
 
-
-
-
-
-
 Widget build(BuildContext context){
+ 
 
 
 return Scaffold(
-
-
-  
 
 
     appBar: AppBar(
@@ -77,16 +68,30 @@ body:ListView.builder(
   itemBuilder: (context ,index){
 
 
-    return ListTile(title:Text(users[index].name));
+    return ListTile(title:Text(users[index].name),
+    
+    onTap: (){
+
+
+      Navigator.push(context, MaterialPageRoute(builder:(context)=> UserPostDetail(id:users[index].id),
+      // settings: RouteSettings(
+
+      //   arguments: users[index]
+      // )
+      
+      ));
+    },
+    );
+
+
+  
+
 
    
   },
   
   )
-
-
-
-    
+  
 
 
 );
