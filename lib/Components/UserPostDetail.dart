@@ -57,26 +57,50 @@ void initState(){
   Widget build(BuildContext context){
 
     return Scaffold(
+      backgroundColor: Colors.deepOrange.shade100,
+    appBar: AppBar(
+      toolbarHeight: 60, 
+     backgroundColor: Colors.blueAccent,
+      title:Text("Post"),
+      shape: RoundedRectangleBorder(
+
+        borderRadius: BorderRadius.vertical(bottom:Radius.circular(55))
+      ),
+      leading:GestureDetector(child:Icon(Icons.book))
+
+     
+       
+    ),
 
       body:ListView.builder(
 
         itemCount: posts.length,
         itemBuilder: (context,index){
 
-          return ListTile(title:Text(posts[index].title),
+          return
+          Container(
+            margin: const EdgeInsets.all(10),
+    decoration: BoxDecoration(
+
+      border: Border.all(color: Colors.blueAccent),
+      borderRadius: BorderRadius.all(Radius.circular(20))
+    ),
+          
+          
+       child:    ListTile(title:Text("Title:      "+posts[index].title,style: TextStyle(fontWeight: FontWeight.bold),),
+       subtitle: Text(posts[index].body),
+       
           onTap: (){
 
 
-      Navigator.push(context, MaterialPageRoute(builder:(context)=> PostComments(id:posts[index].id),
-      // settings: RouteSettings(
 
-      //   arguments: users[index]
-      // )
-      
+      Navigator.push(context, MaterialPageRoute(builder:(context)=> PostComments(id:posts[index].id),
+   
       ));
     },
           
           
+          ),
           );
           
         },

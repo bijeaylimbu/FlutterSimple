@@ -12,14 +12,17 @@ import 'package:http/http.dart' as http;
 
 class ListingUser extends StatefulWidget{
 
-  
+
   @override
   _ListingUser createState() => _ListingUser();
 }
  
 
 class _ListingUser extends State<ListingUser> {
+ 
 
+
+  Color color;
 var users=new List<User> ();
 
 _getUser(){
@@ -40,6 +43,7 @@ _getUser(){
 
        super.initState();
        _getUser();
+       color=Colors.transparent;
 
 
     }
@@ -55,11 +59,19 @@ Widget build(BuildContext context){
 
 
 return Scaffold(
-
-
+backgroundColor: Colors.cyanAccent.shade400,
     appBar: AppBar(
+      toolbarHeight: 60, 
+     backgroundColor: Colors.blueAccent,
+      title:Text("User Lists"),
+      shape: RoundedRectangleBorder(
 
-      title: Text("Users"),
+        borderRadius: BorderRadius.vertical(bottom:Radius.circular(55))
+      ),
+      leading:GestureDetector(child:Icon(Icons.person))
+
+     
+       
     ),
 
 
@@ -68,23 +80,35 @@ body:ListView.builder(
   itemBuilder: (context ,index){
 
 
-    return ListTile(title:Text(users[index].name),
+    return Container(
+    margin: const EdgeInsets.all(10),
+    decoration: BoxDecoration(
+
+      border: Border.all(color: Colors.blueAccent),
+      borderRadius: BorderRadius.all(Radius.circular(20))
+    ),
+
+    
+
+    
+   child:  ListTile(title:Text(users[index].name),
     
     onTap: (){
 
-
+setState(() {
+    color=Colors.cyanAccent;
+    
+    
+});
       Navigator.push(context, MaterialPageRoute(builder:(context)=> UserPostDetail(id:users[index].id),
-      // settings: RouteSettings(
-
-      //   arguments: users[index]
-      // )
+     
       
       ));
     },
+    ),
+
+
     );
-
-
-  
 
 
    

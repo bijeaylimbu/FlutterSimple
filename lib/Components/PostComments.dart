@@ -46,7 +46,21 @@ class _PostComments extends State<PostComments>{
   @override
   Widget build(BuildContext context){
 
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.amber.shade100,
+    appBar: AppBar(
+      toolbarHeight: 60, 
+     backgroundColor: Colors.blueAccent,
+      title:Text("Comments"),
+      shape: RoundedRectangleBorder(
+
+        borderRadius: BorderRadius.vertical(bottom:Radius.circular(55))
+      ),
+      leading:GestureDetector(child:Icon(Icons.book))
+
+     
+       
+    ),
+      
 
       body:ListView.builder(
 
@@ -54,7 +68,24 @@ class _PostComments extends State<PostComments>{
         itemCount:comments.length,
         itemBuilder:(context,index){
 
-          return ListTile(title: Text(comments[index].body));
+        return  
+          Container(
+
+            
+            margin: const EdgeInsets.all(10),
+    decoration: BoxDecoration(
+
+      border: Border.all(color: Colors.blueAccent),
+      borderRadius: BorderRadius.all(Radius.circular(20))
+    ),
+
+     child:     ListTile(title: Text(("Name: "+comments[index].name)+"\n"+"Email: "+( comments[index].email)),
+     
+     subtitle: Text((comments[index].body),
+     ),
+
+          ),
+          );
         }
       )
 
