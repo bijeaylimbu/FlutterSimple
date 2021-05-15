@@ -1,33 +1,34 @@
 import 'dart:async';
 import 'dart:convert';
-
-import "../Models/User.dart";
-import "../Action/API.dart";
+import "../Models/UserAlbums.dart";
+import '../Models/User.dart';
+import '../Action/API.dart';
+import "../BottomNav/UserPhotosList.dart";
 import 'package:flutter/material.dart';
-import 'UserPostDetail.dart';
+import '../Components/UserPostDetail.dart';
 import 'package:http/http.dart' as http;
 
-class ListingUser extends StatefulWidget {
+class AlbumsLists extends StatefulWidget {
+  int id;
+
+  AlbumsLists({Key key, this.id});
   @override
-  _ListingUser createState() => _ListingUser();
+  _AlbumsLists createState() => _AlbumsLists();
 }
 
-class _ListingUser extends State<ListingUser> {
+class _AlbumsLists extends State<AlbumsLists> {
 
-  int selectedPage=0;
+  
   Color _iconColor = Colors.blue;
 
-  var users = new List<User>();
-  final _pageOptions=[
+  var album = new List<UserAlbums>();
+  
 
-    ListingUser(),
-  ];
-
-  _getUser() {
-    API.getUser().then((response) {
+  _getAlbum() {
+    API.getAlbum(widget.id).then((response) {
       setState(() {
         Iterable list = json.decode(response.body);
-        users = list.map((model) => User.fromJson(model)).toList();
+        album = list.map((model) => UserAlbums.fromJson(model)).toList();
       });
     });
   }
@@ -35,7 +36,7 @@ class _ListingUser extends State<ListingUser> {
   @override
   void initState() {
     super.initState();
-    _getUser();
+    _getAlbum();
   }
 
   dispose() {
@@ -43,19 +44,19 @@ class _ListingUser extends State<ListingUser> {
   }
 
   Widget build(BuildContext context) {
-   
-        return Scaffold(
+    return new GestureDetector(
+        child: new Scaffold(
             backgroundColor: Colors.cyanAccent.shade400,
             appBar: AppBar(
                 toolbarHeight: 60,
                 backgroundColor: Colors.blueAccent,
-                title: Text("User Lists"),
+                title: Text("Album List"),
                 shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(55))),
                 leading: GestureDetector(child: Icon(Icons.person))),
             body: ListView.builder(
-              itemCount: users.length,
+              itemCount: album.length,
               itemBuilder: (context, index) {
                 return Container(
                   margin: const EdgeInsets.all(10),
@@ -63,8 +64,8 @@ class _ListingUser extends State<ListingUser> {
                       border: Border.all(color: Colors.blueAccent),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
                   child: ListTile(
-                    title: Text(users[index].name),
-                    leading: Icon(Icons.person, color: _iconColor),
+                    title: Text(album[index].title),
+                    leading: Icon(Icons.book, color: _iconColor),
                     onTap: () {
                       setState(() {
                         _iconColor:
@@ -75,12 +76,12 @@ class _ListingUser extends State<ListingUser> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                UserPostDetail(id: users[index].id),
+                                UserPhotosList(id: album[index].id),
                           ));
                     },
                   ),
                 );
               },
-            ));
+            )));
   }
 }

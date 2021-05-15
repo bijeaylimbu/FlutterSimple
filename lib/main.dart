@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:internship_assignment/BottomNav/UserName.dart';
 import 'package:internship_assignment/Components/ListingUser.dart';
+import 'package:internship_assignment/Widget/BottomNavbar.dart';
 
 
 import 'Components/Offline.dart';
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
        debugShowCheckedModeBanner: false,
      
-      home: OfflineData(),
+      home: BottomNavbar(),
     );
   }
 }

@@ -32,6 +32,19 @@ class API{
     return http.get(url);
   }
 
+  static Future getAlbum(int id){
+
+    var url=baseUrl +"/users/$id/albums";
+
+    return http.get(url);
+  }
+
+ static Future getPhotos(int id){
+
+    var url=baseUrl +"/albums/$id/photos";
+
+    return http.get(url);
+  }
 
 
 fetchData({String url}) async{

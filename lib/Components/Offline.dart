@@ -32,7 +32,7 @@ Future<bool> getAppData() async{
 
   await openBox();
 
-  String url="https://jsonplaceholder.typicode.com/users/";
+  String url="jsonplaceholder.typicode.com/users/";
 
   try{
     var response=await http.get(url);
@@ -55,7 +55,7 @@ Future<bool> getAppData() async{
 
   if(mymap.isEmpty){
 
-    data.add('emply');
+    data.add('empty');
 
 
 
@@ -107,7 +107,11 @@ return Scaffold(
                 itemCount: data.length,
 
                 itemBuilder: (ctxt,index){
-                  return ListTile(title:Text("${data[index]["name"]}"));
+                  return 
+                  
+                  
+                  
+                  ListTile(title:Text(data[index].name));
 
 
 
