@@ -46,7 +46,7 @@ class _AlbumsLists extends State<AlbumsLists> {
   Widget build(BuildContext context) {
     return new GestureDetector(
         child: new Scaffold(
-            backgroundColor: Colors.cyanAccent.shade400,
+            backgroundColor: Colors.limeAccent.shade100,
             appBar: AppBar(
                 toolbarHeight: 60,
                 backgroundColor: Colors.blueAccent,
@@ -54,7 +54,7 @@ class _AlbumsLists extends State<AlbumsLists> {
                 shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.vertical(bottom: Radius.circular(55))),
-                leading: GestureDetector(child: Icon(Icons.person))),
+                leading: GestureDetector(child: Icon(Icons.book))),
             body: ListView.builder(
               itemCount: album.length,
               itemBuilder: (context, index) {

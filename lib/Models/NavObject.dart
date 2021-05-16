@@ -25,12 +25,12 @@ List<NavObject> navItems=[
   ),
 
   NavObject(screen:UserName(),
-  navIcon: Icon(Icons.person),
+  navIcon: Icon(Icons.book),
   title: Text("Album")
   
   ),
 
-   NavObject(screen:Todo(),
+   NavObject(screen:TodoScreen(),
   navIcon: Icon(Icons.list),
   title: Text("Todo")
   

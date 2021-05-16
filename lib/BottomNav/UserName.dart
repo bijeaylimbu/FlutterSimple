@@ -44,10 +44,10 @@ class _UserName extends State<UserName> {
   Widget build(BuildContext context) {
     return new GestureDetector(
         child: new Scaffold(
-            backgroundColor: Colors.cyanAccent.shade400,
+            backgroundColor: Colors.lightGreen.shade100,
             appBar: AppBar(
                 toolbarHeight: 60,
-                backgroundColor: Colors.blueAccent,
+                backgroundColor: Colors.deepPurple.shade100,
                 title: Text("User Lists"),
                 shape: RoundedRectangleBorder(
                     borderRadius:
